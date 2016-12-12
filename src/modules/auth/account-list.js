@@ -1,9 +1,25 @@
 import app from 'app.config';
 
-app.controller('accountListCtrl', function($scope, neGrid) {
+const layer = require('layer');
+
+app.controller('accountListCtrl', function($scope, $compile, neGrid) {
     let grid = null;
     $scope.gridList = [];
     $scope.gridSel = [];
+
+    let html = '<div><button ng-click="layerBtn()">{{name}}</button></div>';
+
+    $scope.layerBtn = function() {
+        $scope.name += 1;
+    };
+    $scope.name = 0;
+
+    $scope.testLayer = function() {
+        var index = layer.open({
+            content: html,
+            success: (_dom) => { $compile(_dom)($scope); }
+        });
+    };
 
     grid = neGrid.create({
         parent: '#grid',
