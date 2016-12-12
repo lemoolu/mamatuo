@@ -1,5 +1,5 @@
 import app from 'app.config';
-import accountListCtrl from './account-list';
+import './account-list';
 
 
 // 权限管理模块
@@ -17,8 +17,6 @@ app.config(($stateProvider) => {
         views: {
             '@': { template: require('./account-list.html') }
         },
-        controller: accountListCtrl,
-        controllerAs: 'vm'
     }).state('auth.change-password', {
         url: '/change-password',
         views: {
